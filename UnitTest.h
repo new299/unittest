@@ -9,7 +9,6 @@
 
 #include <iostream>
 #include <sstream>
-#include "stringify.h"
 
 #define teste(t1,t2) _test(t1,t2,__LINE__,__FILE__)
 #define test_gt(t1,t2) _test_gt(t1,t2,__LINE__,__FILE__)
@@ -131,7 +130,9 @@ public:
   }
 
   std::string tap_report() {
-    return std::string("1..") + stringify(test_id-1) + "\n" + tap.str();
+    std::ostringstream o;
+    o << std::fixed << (test_id-1);
+    return std::string("1..") + o.str() + "\n" + tap.str();
   }
 
 };
